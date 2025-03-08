@@ -1,81 +1,49 @@
 import 'package:flutter/material.dart';
+import 'settings.dart'; // Import the SettingsPage
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+     
+    Color statusColor;
+    String statusMessage;
+
+    // Determine the color and message based on the current status
+     //String currentStatus;
+    //switch (currentStatus) {
+    //  case "At Risk":
+     //   statusColor = Colors.yellow;
+     //   statusMessage = 'Current Status: At Risk';
+     //   break;
+    //  case "Immediate Action Required":
+    //    statusColor = Colors.red;
+    //    statusMessage = 'Current Status: Immediate Action Required';
+     //   break;
+     // default:
+        statusColor = Colors.green;
+        statusMessage = 'Current Status: Safe';
+    
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+      title: Text(
           "SAHAYAK",
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Color(0xFF0B4BA2),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {
-  Scaffold.of(context).openDrawer();
-},
-
-          ),
-        ],
+        
       ),
-      drawer: Drawer(
-  backgroundColor: Color(0xFF0B4BA2), // Same color as AppBar
-  child: ListView(
-    padding: EdgeInsets.zero,
-    children: <Widget>[
-      DrawerHeader(
-        child: Text(
-          'Menu',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-          ),
-        ),
-        decoration: BoxDecoration(
-          color: Color(0xFF0B4BA2),
-        ),
-      ),
-      ListTile(
-        leading: Icon(Icons.person, color: Colors.white),
-        title: Text('Profile', style: TextStyle(color: Colors.white)),
-        onTap: () {
-          // Handle Profile action
-          Navigator.pop(context); // Close the drawer
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.color_lens, color: Colors.white),
-        title: Text('Theme', style: TextStyle(color: Colors.white)),
-        onTap: () {
-          // Handle Theme action
-          Navigator.pop(context); // Close the drawer
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.settings, color: Colors.white),
-        title: Text('Settings', style: TextStyle(color: Colors.white)),
-        onTap: () {
-          // Handle Settings action
-          Navigator.pop(context); // Close the drawer
-        },
-      ),
-    ],
-  ),
-),
       body: Column(
-        children: [
+         children: [
           // Status Bar
           Container(
-            color: Colors.green,
+            color: statusColor,
             padding: EdgeInsets.all(10),
             child: Row(
               children: [
                 Icon(Icons.lock, color: Colors.white),
                 SizedBox(width: 10),
-                Text('Current Status: Safe', style: TextStyle(color: Colors.white)),
+                Text(statusMessage, style: TextStyle(color: Colors.white)),
               ],
             ),
           ),
@@ -94,24 +62,16 @@ class HomePage extends StatelessWidget {
                 }),
                 _buildFunctionalityButton(context, Icons.people, 'Nominee Setup', () {
                   // Navigate to nominee setup
-                 
                 }),
-
                 _buildFunctionalityButton(context, Icons.security, 'Stay Secure', () {
                   // Navigate to security tips
-                 
                 }),
-
                 _buildFunctionalityButton(context, Icons.warning, 'Scams', () {
                   // Navigate to scams information
-                  
                 }),
-
                 _buildFunctionalityButton(context, Icons.help, 'Help Desk', () {
                   // Navigate to help desk
-                 
                 }),
-
               ],
             ),
           ),
@@ -124,8 +84,45 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Menu', style: TextStyle(color: Colors.white, fontSize: 24)),
+              decoration: BoxDecoration(
+                color: Color(0xFF0B4BA2),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+              onTap: () {
+                // Navigate to Home
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.color_lens),
+              title: Text('Theme'),
+              onTap: () {
+                // Navigate to Home
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()), // Navigate to SettingsPage
+                );
+              },
+            ),
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blue,
+        color: Color(0xFF0B4BA2),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

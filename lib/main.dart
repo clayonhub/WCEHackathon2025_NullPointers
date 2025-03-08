@@ -4,6 +4,7 @@ import 'pan_card_upload.dart'; // Import the PAN card upload page
 import 'bank_account_details.dart'; // Import the bank account details page
 import 'kyc_completed.dart'; // Import the KYC completed page
 import 'homepage.dart'; // Import the HomePage
+import 'settings.dart'; // Import the settings page
 void main() {
   runApp(MyApp());
 }
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
         '/panCardUpload': (context) => PanCardUpload(),
         '/bankAccountDetails': (context) => BankAccountDetails(),
         '/kycCompleted': (context) => KYCCompleted(),
-        '/homepage': (context) => HomeScreen(), // Added route for homepage
+        '/homepage': (context) => HomePage(), // Added route for homepage
+        '/settings': (context) => SettingsPage(), // Added route for settingspage
 
       },
     );
