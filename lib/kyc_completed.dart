@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'homepage.dart'; // Import the HomePage
 
 class KYCCompleted extends StatelessWidget {
   @override
@@ -6,8 +7,11 @@ class KYCCompleted extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFD9D9D9), // Match the theme
       appBar: AppBar(
-        title: Text('KYC Completed'),
-        backgroundColor: Color(0xFF0B4BA2), // Match the theme
+       title: Text(
+          "KYC Completed",
+          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Color(0xFF0B4BA2),
         centerTitle: true,
       ),
       body: Center(
@@ -28,8 +32,12 @@ class KYCCompleted extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Implement the logic to continue
-                Navigator.pushNamed(context, '/nextPage'); // Replace with the actual next page
+              
+                // Navigate to HomePage
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()), // Update to direct to HomePage
+                );
               },
               child: Text(
                 'ALL SET! CONTINUE',

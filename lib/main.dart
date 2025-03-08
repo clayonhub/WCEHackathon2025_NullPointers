@@ -3,7 +3,7 @@ import 'package:file_picker/file_picker.dart'; // Import the file_picker package
 import 'pan_card_upload.dart'; // Import the PAN card upload page
 import 'bank_account_details.dart'; // Import the bank account details page
 import 'kyc_completed.dart'; // Import the KYC completed page
-
+import 'homepage.dart'; // Import the HomePage
 void main() {
   runApp(MyApp());
 }
@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
         '/panCardUpload': (context) => PanCardUpload(),
         '/bankAccountDetails': (context) => BankAccountDetails(),
         '/kycCompleted': (context) => KYCCompleted(),
+        '/homepage': (context) => HomeScreen(), // Added route for homepage
+
       },
     );
   }
@@ -209,7 +211,16 @@ class _LoginPageState extends State<LoginPage> {
             // Login Button
             ElevatedButton(
               onPressed: () {
-                // Implement login logic here
+                if(selectedRole == 'Account Holder'){
+                // Navigate to HomePage
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()), // Update to direct to HomePage
+                );
+                }
+                else(){
+                  // Navigate to NomineePage
+                };
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF0B4BA2),

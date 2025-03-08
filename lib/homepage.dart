@@ -5,17 +5,66 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Elderly-Focused Fraud Detection App'),
-        backgroundColor: Colors.blue,
+        title: Text(
+          "SAHAYAK",
+          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Color(0xFF0B4BA2),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.menu),
             onPressed: () {
-              // Implement menu action
-            },
+  Scaffold.of(context).openDrawer();
+},
+
           ),
         ],
       ),
+      drawer: Drawer(
+  backgroundColor: Color(0xFF0B4BA2), // Same color as AppBar
+  child: ListView(
+    padding: EdgeInsets.zero,
+    children: <Widget>[
+      DrawerHeader(
+        child: Text(
+          'Menu',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+          ),
+        ),
+        decoration: BoxDecoration(
+          color: Color(0xFF0B4BA2),
+        ),
+      ),
+      ListTile(
+        leading: Icon(Icons.person, color: Colors.white),
+        title: Text('Profile', style: TextStyle(color: Colors.white)),
+        onTap: () {
+          // Handle Profile action
+          Navigator.pop(context); // Close the drawer
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.color_lens, color: Colors.white),
+        title: Text('Theme', style: TextStyle(color: Colors.white)),
+        onTap: () {
+          // Handle Theme action
+          Navigator.pop(context); // Close the drawer
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.settings, color: Colors.white),
+        title: Text('Settings', style: TextStyle(color: Colors.white)),
+        onTap: () {
+          // Handle Settings action
+          Navigator.pop(context); // Close the drawer
+        },
+      ),
+    ],
+  ),
+),
       body: Column(
         children: [
           // Status Bar
@@ -43,18 +92,26 @@ class HomePage extends StatelessWidget {
                 _buildFunctionalityButton(context, Icons.account_balance, 'Check Balance', () {
                   // Navigate to check balance functionality
                 }),
-                _buildFunctionalityButton(context, Icons.abc, 'Nominee Setup', () {
+                _buildFunctionalityButton(context, Icons.people, 'Nominee Setup', () {
                   // Navigate to nominee setup
+                 
                 }),
+
                 _buildFunctionalityButton(context, Icons.security, 'Stay Secure', () {
                   // Navigate to security tips
+                 
                 }),
+
                 _buildFunctionalityButton(context, Icons.warning, 'Scams', () {
                   // Navigate to scams information
+                  
                 }),
+
                 _buildFunctionalityButton(context, Icons.help, 'Help Desk', () {
                   // Navigate to help desk
+                 
                 }),
+
               ],
             ),
           ),
