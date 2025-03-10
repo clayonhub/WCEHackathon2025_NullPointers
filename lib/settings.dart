@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'homepage.dart'; // Import HomePage for bottom navigation
+import 'main.dart'; // Import main.dart for HomeScreen
 
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-      title: Text(
-          "Settings",
-          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
+      appBar: AppBar(
+        title: Text('Settings'),
         backgroundColor: Color(0xFF0B4BA2),
-        centerTitle: true,
-        
       ),
       body: Column(
         children: [
@@ -29,12 +24,15 @@ class SettingsPage extends StatelessWidget {
             // Navigate to Change Language page
           }),
           _buildButton(context, Icons.exit_to_app, 'Log Out', () {
-            // Implement logout functionality
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()), // Navigate to HomeScreen
+            );
           }, isLogout: true),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Color(0xFF0B4BA2),
+        color: Colors.blue,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -43,7 +41,7 @@ class SettingsPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               },
             ),
