@@ -5,9 +5,13 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Settings'),
+     appBar: AppBar(
+       title: Text(
+          "Settings",
+          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         backgroundColor: Color(0xFF0B4BA2),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -32,7 +36,7 @@ class SettingsPage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blue,
+        color: Color(0xFF0B4BA2),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
