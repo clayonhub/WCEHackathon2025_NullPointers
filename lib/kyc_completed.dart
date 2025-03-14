@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'homepage.dart'; // Import the HomePage
-import 'settings.dart'; // Import the SettingsPage
+
 
 class KYCCompleted extends StatelessWidget {
   @override
