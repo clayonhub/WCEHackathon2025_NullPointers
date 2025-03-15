@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection - Speech</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎙 AI Fraud Detection</h1>
+        <h2>Analyze Phone Calls</h2>
+        <button id="record-btn" onclick="startRecording()">🎤 Start Recording</button>
+        <button id="stop-btn" onclick="stopRecording()" disabled>⏹ Stop Recording</button>
+        <p id="speech-result"></p>
+        <a href="index.html" class="switch-page">💬 Switch to Text Detection</a>
+    </div>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+
+        function startRecording() {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder.start();
+                audioChunks = [];
+                
+                mediaRecorder.ondataavailable = event => {
+                    audioChunks.push(event.data);
+                };
+
+                document.getElementById("record-btn").disabled = true;
+                document.getElementById("stop-btn").disabled = false;
+            });
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+            document.getElementById("record-btn").disabled = false;
+            document.getElementById("stop-btn").disabled = true;
+
+            mediaRecorder.onstop = () => {
+                let audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+                let formData = new FormData();
+                formData.append("file", audioBlob, "audio.wav");
+
+                fetch("/predict_speech", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("speech-result").innerText = "Prediction: " + data.result;
+                })
+                .catch(error => console.error("Error:", error));
+            };
+        }
+    </script>
+</body>
+</html>

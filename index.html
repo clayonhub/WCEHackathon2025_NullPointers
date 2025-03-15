@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection - Text</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 AI Fraud Detection</h1>
+        <h2>Check Suspicious Messages</h2>
+        <textarea id="text-input" placeholder="Enter a message..."></textarea>
+        <button onclick="checkFraud()">🔎 Detect Fraud</button>
+        <p id="result"></p>
+        <a href="speech.html" class="switch-page">🎤 Switch to Speech Detection</a>
+    </div>
+
+    <script>
+        function checkFraud() {
+            let userInput = document.getElementById("text-input").value;
+            fetch("/predict_text", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerText = "Prediction: " + data.result;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
